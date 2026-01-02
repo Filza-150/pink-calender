@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShezuPlanner 2025 & 2026 | Shezu Digital Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "planner-pink": "#ffc0cb",
+              "planner-purple": "#d8bfd8",
+              "planner-dustypink": "#ec9ca1",
+              "planner-lavender": "#c3aed6",
+              "planner-darkpink": "#c74a65",
+            },
+            fontFamily: {
+              dancing: ["Dancing Script", "cursive"],
+              poppins: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="text-planner-darkpink min-h-screen">
+    <!-- Sticker decorations -->
+    <div class="fixed sticker sticker-1 text-xl">Plan with Purpose ✨</div>
+    <div class="fixed sticker sticker-2 text-lg">Dream Big in 2025/26 💫</div>
+
+    <div class="container mx-auto px-4 py-8 max-w-6xl relative">
+      <!-- Header -->
+      <header class="text-center mb-12">
+        <h1
+          class="text-5xl md:text-7xl font-dancing font-bold bg-gradient-to-r from-planner-purple to-planner-dustypink bg-clip-text text-transparent"
+        >
+          FemmePlanner
+        </h1>
+        <p class="text-xl md:text-2xl font-poppins mt-2">
+          Your 2025 & 2026 Digital Planning Companion
+        </p>
+        <div class="floral-divider">
+          <i class="fas fa-heart"></i>
+        </div>
+      </header>
+
+      <!-- Year Tabs -->
+      <div class="flex justify-center mb-10">
+        <div class="bg-white rounded-full shadow-lg p-1 inline-flex">
+          <button
+            id="tab2025"
+            class="px-6 py-3 rounded-full text-lg tab-active transition-all"
+          >
+            2025
+          </button>
+          <button
+            id="tab2026"
+            class="px-6 py-3 rounded-full text-lg transition-all"
+          >
+            2026
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Calendar Section -->
+        <div class="lg:col-span-2">
+          <div class="planner-card p-6 relative overflow-hidden">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-3xl font-poppins font-semibold">
+                <span id="current-month">January</span>
+                <span id="current-year">2025</span>
+              </h2>
+              <div class="flex space-x-2">
+                <button id="prev-month" class="girly-button px-4 py-2">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="today" class="girly-button px-4 py-2">Today</button>
+                <button id="next-month" class="girly-button px-4 py-2">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Weekday Headers -->
+            <div class="calendar-grid mb-2">
+              <div class="text-center p-2 font-semibold">Sun</div>
+              <div class="text-center p-2 font-semibold">Mon</div>
+              <div class="text-center p-2 font-semibold">Tue</div>
+              <div class="text-center p-2 font-semibold">Wed</div>
+              <div class="text-center p-2 font-semibold">Thu</div>
+              <div class="text-center p-2 font-semibold">Fri</div>
+              <div class="text-center p-2 font-semibold">Sat</div>
+            </div>
+
+            <!-- Calendar Days Grid -->
+            <div id="calendar-days" class="calendar-grid">
+              <!-- Days will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Goals Section -->
+          <div class="planner-card p-6 mt-8">
+            <h2
+              class="text-2xl font-poppins font-semibold mb-4 flex items-center"
+            >
+              <i class="fas fa-bullseye mr-2"></i> Monthly Goals
+            </h2>
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="pink-checkbox h-5 w-5 rounded-md border-planner-purple focus:ring-planner-darkpink"
+                />
+                <span class="ml-3">Complete website redesign project</span>
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="pink-checkbox h-5 w-5 rounded-md border-planner-purple focus:ring-planner-darkpink"
+                />
+                <span class="ml-3">Establish morning yoga routine</span>
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  class="pink-checkbox h-5 w-5 rounded-md border-planner-purple focus:ring-planner-darkpink"
+                />
+                <span class="ml-3">Read 2 personal development books</span>
+              </div>
+            </div>
+            <div class="mt-4 flex">
+              <input
+                type="text"
+                placeholder="Add new goal..."
+                class="flex-grow px-4 py-2 rounded-l-full border border-planner-pink focus:outline-none focus:ring-1 focus:ring-planner-lavender"
+              />
+              <button class="girly-button px-4 py-2 rounded-r-full">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div>
+          <!-- To-Do Section -->
+          <div class="planner-card p-6">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-poppins font-semibold flex items-center">
+                <i class="fas fa-tasks mr-2"></i> My Tasks
+              </h2>
+              <span
+                class="bg-planner-pink text-white text-sm px-2 py-1 rounded-full"
+                >4</span
+              >
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <input
+                  type="checkbox"
+                  class="pink-checkbox h-5 w-5 rounded-md border-planner-purple focus:ring-planner-darkpink mt-1"
+                />
+                <div class="ml-3">
+                  <p class="font-medium">Prepare meeting materials</p>
+                  <p class="text-sm text-gray-500">Today, 2:00 PM</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <input
+                  type="checkbox"
+                  class="pink-checkbox h-5 w-5 rounded-md border-planner-purple focus:ring-planner-darkpink mt-1"
+                />
+                <div class="ml-3">
+                  <p class="font-medium">Call mom for birthday wishes</p>
+                  <p class="text-sm text-gray-500">Tomorrow</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <input
+                  type="checkbox"
+                  class="pink-checkbox h-5 w-5 rounded-md border-planner-purple focus:ring-planner-darkpink mt-1"
+                />
+                <div class="ml-3">
+                  <p class="font-medium">Book spa appointment</p>
+                  <p class="text-sm text-gray-500">This week</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <input
+                  type="checkbox"
+                  class="pink-checkbox h-5 w-5 rounded-md border-planner-purple focus:ring-planner-darkpink mt-1"
+                />
+                <div class="ml-3">
+                  <p class="font-medium">Research vacation destinations</p>
+                  <p class="text-sm text-gray-500">No deadline</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 flex">
+              <input
+                type="text"
+                placeholder="Add a new task..."
+                class="flex-grow px-4 py-2 rounded-l-full border border-planner-pink focus:outline-none focus:ring-1 focus:ring-planner-lavender"
+              />
+              <button class="girly-button px-4 py-2 rounded-r-full">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Notes Section -->
+          <div class="planner-card p-6 mt-8">
+            <h2
+              class="text-2xl font-poppins font-semibold mb-4 flex items-center"
+            >
+              <i class="fas fa-edit mr-2"></i> Inspiration Notes
+            </h2>
+            <textarea
+              class="w-full h-40 p-4 bg-white bg-opacity-80 rounded-xl border border-planner-pink focus:outline-none focus:ring-1 focus:ring-planner-lavender resize-none"
+              placeholder="Jot down your thoughts, ideas, or inspirations..."
+            >
+What's one thing I can do today to move closer to my goals?
+Gratitude list - Family, Health, Nature, Growth
+Remember to schedule 'me time' this week!</textarea
+            >
+            <button class="girly-button px-4 py-2 mt-4 w-full">
+              Save Notes
+            </button>
+          </div>
+
+          <!-- Quote of the Day -->
+          <div class="planner-card p-6 mt-8">
+            <div class="text-center">
+              <i
+                class="fas fa-quote-left text-2xl text-planner-purple mb-3"
+              ></i>
+              <p class="italic text-lg">
+                "She believed she could, so she did."
+              </p>
+              <p class="mt-2 text-planner-purple">- Unknown</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div class="planner-card p-8 mt-12">
+        <h2 class="text-3xl font-poppins font-bold text-center mb-8">
+          Your Complete Digital Planning Experience
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div
+              class="bg-planner-pink bg-opacity-20 rounded-full w-16 h-16 flex items-center justify-center mx-auto"
+            >
+              <i class="fas fa-calendar-alt text-2xl text-planner-darkpink"></i>
+            </div>
+            <h3 class="text-xl font-poppins font-semibold mt-4">
+              Yearly & Monthly Planning
+            </h3>
+            <p class="mt-2">
+              Plan your entire year with monthly overviews and detailed
+              day-to-day organization.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="bg-planner-pink bg-opacity-20 rounded-full w-16 h-16 flex items-center justify-center mx-auto"
+            >
+              <i class="fas fa-heart text-2xl text-planner-darkpink"></i>
+            </div>
+            <h3 class="text-xl font-poppins font-semibold mt-4">
+              Self-Care Tracking
+            </h3>
+            <p class="mt-2">
+              Monitor your wellness routines, meditation, and self-care
+              activities.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="bg-planner-pink bg-opacity-20 rounded-full w-16 h-16 flex items-center justify-center mx-auto"
+            >
+              <i class="fas fa-palette text-2xl text-planner-darkpink"></i>
+            </div>
+            <h3 class="text-xl font-poppins font-semibold mt-4">
+              Customizable Design
+            </h3>
+            <p class="mt-2">
+              Personalize your planner with stickers, colors, and themes that
+              speak to you.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer
+        class="mt-16 py-8 text-center border-t border-planner-pink border-opacity-30"
+      >
+        <p class="font-dancing text-2xl">
+          FemmePlanner - Dream Big. Plan Well. Live Beautifully.
+        </p>
+        <p class="mt-4">
+          © 2025-2026 FemmePlanner Digital Planner | Created with
+          <i class="fas fa-heart text-planner-purple"></i>
+        </p>
+      </footer>
+    </div>
+    <p
+      style="
+        border-radius: 8px;
+        text-align: center;
+        font-size: 12px;
+        color: #fff;
+        margin-top: 16px;
+        position: fixed;
+        left: 8px;
+        bottom: 8px;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 4px 8px;
+      "
+    >
+      Made with
+      <img
+        src="https://enzostvs-deepsite.hf.space/logo.svg"
+        alt="DeepSite Logo"
+        style="
+          width: 16px;
+          height: 16px;
+          vertical-align: middle;
+          display: inline-block;
+          margin-right: 3px;
+          filter: brightness(0) invert(1);
+        "
+      /><a
+        href="https://enzostvs-deepsite.hf.space"
+        style="color: #fff; text-decoration: underline"
+        target="_blank"
+        >DeepSite</a
+      >
+      - 🧬
+      <a
+        href="https://enzostvs-deepsite.hf.space?remix=usmankl13/shezu-space"
+        style="color: #fff; text-decoration: underline"
+        target="_blank"
+        >Remix</a
+      >
+    </p>
+    <script src="calender.js"></script>
+  </body>
+</html>
